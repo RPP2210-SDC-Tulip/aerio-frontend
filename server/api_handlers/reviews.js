@@ -1,16 +1,18 @@
 const axios = require('axios');
 require('dotenv').config();
 
-const APIHostURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp";
+const APIHostURL = "http://localhost:3003";
+// const APIHostURL = "https://github.com/RPP2210-SDC-Tulip/tulip-reviews/blob/main/server/index.js";
+// const APIHostURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp";
 const APIKey = process.env.FEC_API_KEY;
 
 const getReviews = (req, res) => {
   var queryParams = req.query;
-  console.log('---------queryParams---------', queryParams)
+  // console.log('---------queryParams---------', queryParams)
   return axios.get(`${APIHostURL}/reviews`, {
-    headers: {
-      Authorization: APIKey
-    },
+    // headers: {
+    //   Authorization: APIKey
+    // },
     params: {
       page: queryParams.page,
       count: queryParams.count,
@@ -24,9 +26,9 @@ const getReviews = (req, res) => {
 const getReviewsMeta = (req, res) => {
   var queryParams = req.query;
   return axios.get(`${APIHostURL}/reviews/meta`, {
-    headers: {
-      Authorization: APIKey
-    },
+    // headers: {
+    //   Authorization: APIKey
+    // },
     params: {
       product_id: queryParams.product_id
     }
@@ -69,7 +71,7 @@ const postReview = (req, res) => {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: APIKey
+        // Authorization: APIKey
       }
 
 });
@@ -78,20 +80,20 @@ const postReview = (req, res) => {
 const putHelpful = (req, res) => {
   var reviewID = req.body.id
   return axios.put(`${APIHostURL}/reviews/${reviewID}/helpful`, null, {
-    headers: {
-      Authorization: APIKey
-    }
+    // headers: {
+    //   Authorization: APIKey
+    // }
   });
 }
 
 const putReportReview = (req, res) => {
   //TODO Reimplement with actual reviewID
   var reviewID = req.body.id
-  console.log('Got request in report review:', req.body.id)
+  // console.log('Got request in report review:', req.body.id)
   return axios.put(`${APIHostURL}/reviews/${reviewID}/report`, null, {
-    headers: {
-      Authorization: APIKey
-    }
+    // headers: {
+    //   Authorization: APIKey
+    // }
   });
 }
 
